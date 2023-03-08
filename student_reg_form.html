@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="mb-5">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="../../main.html">JS Practicals</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Demo Projects
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../counter_app/counter_app.html">Counter App</a></li>
+                        <li><a class="dropdown-item" href="../todo_app/todo_app_using_table.html">Todo App Using
+                            Table</a></li>
+                        <li><a class="dropdown-item" href="../todo_app/todo_list_using_list.html">Todo App Using
+                            List</a></li>
+                        <li><a class="dropdown-item" href="../color_flipping_app/simple_color_flip.html">Color
+                            Flipping</a></li>
+                        <li><a class="dropdown-item" href="../color_flipping_app/hex_code_flip.html">HexCode
+                            Flipping</a></li>
+                        <li><a class="dropdown-item" href="slider.html">Image Slider</a></li>
+                        <li><a class="dropdown-item" href="../food_menu/food_menu.html">Food Menu</a></li>
+                        <li><a class="dropdown-item" href="../form_inputs/form_input_ex1.html">Form Input Example 1</a>
+                        </li>
+                        <li><a class="dropdown-item" href="../digital_clock/digital_clock.html">Digital Clock</a></li>
+                        <!--  <li><a class="dropdown-item" href="../food_menu/food_menu.html">Food Menu</a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="st_reg_app.html" id="navbarDarkDropdownMenuLink2">
+                        Student Register
+                    </a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <button type="button" class="btn btn-light text-dark shadow-lg rounded-circle"
+                        onclick="toggleDarkLightMode();" id="toggleDark">
+                    <i class="fa fa-sun text-dark"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row mt-5 px-5 mb-5">
+    <div class="col-sm-6">
+        <div class="card bg-warning">
+            <div class="card-header bg-dark text-center text-white">Register Form</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group mb-3">
+                            <label>First Name</label>&nbsp;<span
+                                class="text-muted">(Max 30 characters a-z and A-Z)</span>
+                            <input type="text" class="mt-1 form-control form-control-sm" placeholder="Enter First Name"
+                                   id="firstName">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Last Name</label>&nbsp;<span
+                                class="text-muted">(Max 30 characters a-z and A-Z)</span>
+                            <input type="text" class="mt-1 form-control form-control-sm" placeholder="Enter Last Name"
+                                   id="lastName">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group mb-3">
+                            <label>Email</label>
+                            <input type="email" class="mt-1 form-control form-control-sm"
+                                   placeholder="Enter Email Address"
+                                   id="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Mobile &nbsp;</label><span class="text-muted">10 digit number</span>
+                            <input type="text" class="mt-1 form-control form-control-sm" placeholder="Enter Mobile No"
+                                   id="mobile">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Date of Birth</label>
+                        <div class="input-group">
+                            <select class="form-select form-select-sm mt-1" id="dobDate">
+                                <option selected disabled>Day</option>
+                            </select>
+                            <select class="form-select form-select-sm mt-1" id="dobMonth">
+                                <option selected disabled>Month</option>
+                            </select>
+                            <select class="form-select form-select-sm mt-1" id="dobYear">
+                                <option selected disabled>Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Age</label>
+                        <input type="text" readonly id="age" class="form-control form-control-sm mt-1"
+                               placeholder="Your Age">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group mt-3">
+                            <label>Gender</label>
+                            <br/>
+                            <input type="radio" name="gender" id="male" value="Male" class="gender"/>&nbsp;Male
+                            &nbsp;&nbsp;<input type="radio" name="gender" id="female" value="Female" class="gender"/>&nbsp;Female
+                            &nbsp;&nbsp;<input type="radio" name="gender" id="other" value="Other" class="gender"/>&nbsp;Other
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group mt-3">
+                            <label>Address</label>
+                            <textarea id="address" class="form-control form-control-sm mt-1" rows="3"
+                                      placeholder="Enter Address"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group mt-3">
+                            <label>Postal Code</label>
+                            <input type="text" id="postalCode" class="form-control form-control mt-1"
+                                   placeholder="Enter Postal Code">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group mt-3">
+                            <label>City</label>
+                            <input type="text" id="city" class="form-control form-control-sm mt-1"
+                                   placeholder="Enter City"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group mt-3">
+                            <label>Province</label>
+                            <input type="text" id="province" class="form-control form-control-sm mt-1"
+                                   placeholder="Enter Province"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group mt-3">
+                            <label>Country</label>
+                            <select class="form-select form-select-sm mt-1" id="country">
+                                <option selected disabled value="0">Select Your Country</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group mt-3">
+                            <label>Hobbies</label>
+                            <br/>
+                            <div class="input-group mb-1">
+                                <input type="checkbox" id="reading" value="Reading" class="checkbox hobbies"/> &nbsp;Reading&nbsp;&nbsp;
+                                <input type="checkbox" id="drawing" value="Drawing" class="checkbox hobbies"/> &nbsp;Drawing&nbsp;&nbsp;
+                                <input type="checkbox" id="singing" value="Singing" class="checkbox hobbies"/> &nbsp;Singing&nbsp;&nbsp;
+                                <input type="checkbox" id="sketching" value="Sketching" class="checkbox hobbies"/> &nbsp;Sketching&nbsp;&nbsp;
+                                <input type="checkbox" id="painting" value="Painting" class="checkbox hobbies"/>&nbsp; Painting&nbsp;
+                                <input type="checkbox" id="dancing" value="Dancing" class="checkbox hobbies"/>&nbsp; Dancing&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <div class="card mt-3">
+                            <div class="card-header text-center" style="background-color: #aaaaaa;font-weight: bold;">A / L Result Sheet</div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Subject</label>
+                                            <input type="text" class="form-control form-control-sm" id="subject"
+                                                   placeholder="Enter Subject"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label>Grade</label>
+                                            <select class="form-select form-select-sm" id="grade">
+                                                <option selected disabled>Select Grade</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            <label>Add</label><br/>
+                                            <button type="button" class="btn btn-sm btn-dark text-warning"
+                                                    style="width: 100%;" id="btnQualificationAdd">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-striped" id="tblResult">
+                                            <thead>
+                                            <tr class="bg-light text-dark text-center">
+                                                <th>Subject</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tblResultBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group mt-1">
+                        <label>Courses Applied For</label>
+                        <div class="input-group">
+                            <input type="radio" name="course" value="Diplopa" class="radio courses"/>&nbsp;&nbsp; Diploma
+                            &nbsp;&nbsp;<input type="radio" name="course" value="High Diploma" class="radio courses"/>&nbsp;&nbsp; High Diploma
+                            &nbsp;&nbsp;<input type="radio" name="course" value="Degree" class="radio courses"/>&nbsp;&nbsp; Degree
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-dark text-warning btn-block" style="width: 100%;" type="button" id="btnRegFormSubmit">
+                            <i class="fa fa-save"></i>&nbsp; Register
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-dark text-warning btn-block" style="width: 100%;" type="button" id="btnRegFormClear">
+                            <i class="fa fa-undo"></i>&nbsp; Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header bg-dark text-center text-white">Student Details</div>
+            <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header text-center bg-warning text-dark">Student Basic Details</div>
+                    <div class="card-body" id="studentBasics" style="background-color: #aaaaaa"></div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header text-center bg-warning text-dark">Student A/ L Results</div>
+                    <div class="card-body" id="alResultTable" style="background-color: #aaaaaa"></div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header text-center bg-warning text-dark">Course Applied For</div>
+                    <div class="card-body" id="courses" style="background-color: #aaaaaa"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer class="footer text-center bg-dark text-white mt-5" style="height: 50px;">
+    <span>All Right Reserved &copy; 2023</span>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script>
+    function toggleDarkLightMode(){
+        let button = document.getElementById('toggleDark')
+        let toggle = button.classList.toggle("true");
+        let body = document.body;
+        console.log(toggle);
+        if(toggle){
+            button.innerHTML = `<i class="fa fa-moon"></i>`
+            body.style.backgroundColor = 'rgb(50,50,50)';
+        }else{
+            button.innerHTML = `<i class="fa fa-sun"></i>`
+            body.style.backgroundColor = 'white';
+        }
+    }
+</script>
+</html>
