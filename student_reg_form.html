@@ -254,22 +254,7 @@
                     <div class="card mb-3">
                         <div class="card-header text-center bg-warning text-dark">Student Basic Details</div>
                         <div class="card-body" id="studentBasics" style="background-color: #aaaaaa">
-                            <table style="width:100%">
-                                <tbody>
-                                    <tr>
-                                        <th>First Name:</th>
-                                        <td>1</td>
-                                        <th>First Name:</th>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <th>First Name:</th>
-                                        <td>1</td>
-                                        <th>First Name:</th>
-                                        <td>1</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
                         </div>
                     </div>
                     <div class="card mb-3">
@@ -354,6 +339,10 @@
     let age_element = document.getElementById('age');
     //date of birth string variable
     let dob = "";
+    //get register button element
+    let reg_button = document.getElementById('btnRegFormSubmit');
+    //get student basic element
+    let student_basic_element = document.getElementById('studentBasics');
 
     //create eventlistner for the date of birth
     window.addEventListener('DOMContentLoaded', () => {
@@ -403,6 +392,37 @@
         let dob_concat = `${date_element.value}-${month_element.value}-${year_element.value}`
         return dob_concat;
     }
+
+    //create evenlistner for the register button to add input values to the created table dynamically
+    reg_button.addEventListener('click', () => {
+        let basic_table = `<table class="table table-bordered">
+                                <tbody class="bg-light">
+                                    <tr>
+                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td colspan="3">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">#</th><td colspan="3">First</th>
+                                    </tr>
+                                </tbody>
+                            </table>`
+        student_basic_element.innerHTML = basic_table;
+
+    })
 </script>
 
 </html>
