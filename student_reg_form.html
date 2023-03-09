@@ -96,13 +96,13 @@
                             <label>Date of Birth</label>
                             <div class="input-group">
                                 <select class="form-select form-select-sm mt-1" id="dobDate">
-                                <option selected disabled>Day</option>
+                                <option value="0" selected disabled>Day</option>
                             </select>
                                 <select class="form-select form-select-sm mt-1" id="dobMonth">
-                                <option selected disabled>Month</option>
+                                <option value="0" selected disabled>Month</option>
                             </select>
                                 <select class="form-select form-select-sm mt-1" id="dobYear">
-                                <option selected disabled>Year</option>
+                                <option value="0" selected disabled>Year</option>
                             </select>
                             </div>
                         </div>
@@ -253,7 +253,24 @@
                 <div class="card-body">
                     <div class="card mb-3">
                         <div class="card-header text-center bg-warning text-dark">Student Basic Details</div>
-                        <div class="card-body" id="studentBasics" style="background-color: #aaaaaa"></div>
+                        <div class="card-body" id="studentBasics" style="background-color: #aaaaaa">
+                            <table style="width:100%">
+                                <tbody>
+                                    <tr>
+                                        <th>First Name:</th>
+                                        <td>1</td>
+                                        <th>First Name:</th>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th>First Name:</th>
+                                        <td>1</td>
+                                        <th>First Name:</th>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="card mb-3">
                         <div class="card-header text-center bg-warning text-dark">Student A/ L Results</div>
@@ -333,6 +350,10 @@
     let month_element = document.getElementById('dobMonth');
     //get year element
     let year_element = document.getElementById('dobYear');
+    //get age element
+    let age_element = document.getElementById('age');
+    //date of birth string variable
+    let dob = "";
 
     //create eventlistner for the date of birth
     window.addEventListener('DOMContentLoaded', () => {
@@ -361,10 +382,27 @@
     //     }
     //     date_element.innerHTML = options;
     // });
+    //eventlistner for the year select box
+    year_element.addEventListener('change', () => {
+        if (date_element.value === "0" && month_element.value === "0") {
+            alert("Please fill date, month and year respectively");
+            year_element.value = "0";
+        } else {
+            let current_year = new Date().getFullYear(); //current year
+            let dob_year = parseInt(year_element.value);
+            //year input field value
+            let age = current_year - dob_year;
+            age_element.value = age;
+            dob = date_of_birth();
+            console.log(dob);
+        }
+    })
 
-    //get button element
-    let register_button = document.getElementById('btnRegFormSubmit');
-    // this is a test comment
+    // create date of birth
+    const date_of_birth = () => {
+        let dob_concat = `${date_element.value}-${month_element.value}-${year_element.value}`
+        return dob_concat;
+    }
 </script>
 
 </html>
