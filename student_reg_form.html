@@ -329,6 +329,18 @@
         'num': 12,
         'month': 'Dec'
     }, ];
+
+    //grade arr
+    let grades = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+    //get firstname element
+    let first_name_element = document.getElementById('firstName');
+    //get lastname element
+    let last_name_element = document.getElementById('lastName');
+    //get email element
+    let email_element = document.getElementById('email');
+    //get mobile element
+    let mobile_element = document.getElementById('mobile');
     //get date element
     let date_element = document.getElementById('dobDate');
     //get month element
@@ -337,6 +349,10 @@
     let year_element = document.getElementById('dobYear');
     //get age element
     let age_element = document.getElementById('age');
+    //get country element
+    let country_element = document.getElementById('country');
+    //get gender element
+    let gender_element = document.querySelectorAll('.gender');
     //date of birth string variable
     let dob = "";
     //get register button element
@@ -344,7 +360,16 @@
     //get student basic element
     let student_basic_element = document.getElementById('studentBasics');
 
+    //Student A/ L Results box
+    //get grade element
+    let grade_element = document.getElementById('grade');
+    //get add button element
+    let add_btn_element = document.getElementById('btnQualificationAdd');
+    //get subject element
+    let subject_element = document.getElementById('subject');
+
     //create eventlistner for the date of birth
+    //this page is loaded when at the first time of page load
     window.addEventListener('DOMContentLoaded', () => {
         //fill date
         for (let i = 1; i <= 31; i++) {
@@ -361,6 +386,10 @@
             option = new Option(i, i);
             year_element.add(option);
         }
+
+        //call fill contries function
+        fill_countries();
+        fill_grades(grades);
     })
 
     // window.addEventListener('DOMContentLoaded', () => {
@@ -393,36 +422,87 @@
         return dob_concat;
     }
 
+    //gernder ceck
+    const gender_checked = (arr_obj) => {
+        let gender = "";
+        arr_obj.forEach(item => {
+            if (item.checked) {
+                gender = item.value;
+            }
+        })
+        return gender;
+    }
+
+    //fill counries
+    const fill_countries = () => {
+        fetch('https://countriesnow.space/api/v0.1/countries')
+            .then((res) => res.json())
+            .then((obj) => {
+                //console.log(obj.data);
+                let option = [];
+
+                obj.data.forEach(item => {
+                    option = new Option(item.country, item.country);
+                    country_element.add(option);
+                })
+            })
+    }
+
+
+    //Student A/ L Results box
+    const fill_grades = (arr) => {
+        arr.forEach(grade => {
+            option = new Option(grade, grade);
+            grade_element.add(option);
+        })
+    }
+
     //create evenlistner for the register button to add input values to the created table dynamically
     reg_button.addEventListener('click', () => {
         let basic_table = `<table class="table table-bordered">
                                 <tbody class="bg-light">
                                     <tr>
-                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                        <th scope="col">First Name:</th><td scope="col">${first_name_element.value}</th><th scope="col">Last Name:</th><td scope="col">${last_name_element.value}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                        <th scope="col">Email:</th><td scope="col">${email_element.value}</th><th scope="col">Mobile:</th><td scope="col">${mobile_element.value}</th>
+                                    </tr> 
+                                    <tr>
+                                        <th scope="col">Date Of Birth:</th><td scope="col">${dob}</th><th scope="col">Age:</th><td scope="col">${age_element.value}</th>
+                                    </tr>                                
+                                    <tr>
+                                        <th scope="col">Gender:</th><td colspan="3">${gender_checked(gender_element)}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
+                                        <th scope="col">Address:</th><td scope="col">First</th><th scope="col">Postal Code:</th><td scope="col">First</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">#</th><td colspan="3">First</th>
+                                        <th scope="col">City:</th><td scope="col">First</th><th scope="col">Country:</th><td scope="col">${country_element.value}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">#</th><td scope="col">First</th><th scope="col">#</th><td scope="col">First</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">#</th><td colspan="3">First</th>
+                                        <th scope="col">Hobbies:</th><td colspan="3">First</th>
                                     </tr>
                                 </tbody>
                             </table>`
         student_basic_element.innerHTML = basic_table;
+        clear_data();
 
     })
+
+    //click event listner for the add button
+    add_btn_element.addEventListener('click', () => {
+        //console.log(subject_element.value === "");
+        if (subject_element.value !== "" && grade_element.value !== 'Select Grade') {
+
+        } else {
+            alert("Please fill out subjects and greads")
+        }
+    })
+
+    function clear_data() {
+        //clear input data
+        first_name_element.value = "";
+    }
 </script>
 
 </html>
