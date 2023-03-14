@@ -380,6 +380,8 @@
     let subject_element = document.getElementById('subject');
     //get table element
     let table_element = document.getElementById('tblResultBody');
+    //global variable empty arr
+    let results_arr = [];
 
     //create eventlistner for the date of birth
     //this page is loaded when at the first time of page load
@@ -519,11 +521,41 @@
         //console.log(subject_element.value === "");
         if (subject_element.value !== "" && grade_element.value !== 'Select Grade') {
             //add row
-            let row
+            let row = table_element.insertRow();
+            //add cells
+            let taskCell_1 = row.insertCell();
+            let taskCell_2 = row.insertCell();
+            //inner text user input
+            taskCell_1.innerText = subject_element.value;
+            taskCell_2.innerText = grade_element.value;
+            result = {
+                subject: subject_element.value,
+                grade: grade_element.value
+            }
+            results_arr.push(result);
+            //console.log(results_arr);
+            results_arr.forEach(obj => {
+                subject_option = new Option(obj.subject, obj.subject); //display_name, value
+                subject_element.add(subject_option);
+                grade_option = new Option(obj.grade, obj.grade); //display_name, value
+                grade_element.add(grade_option);
+            })
+            let basic_table = `<table class="table table-bordered">
+                                <tbody class="bg-light">                                                                
+                                    <tr>
+                                        <th scope="col">Gender:</th><td colspan="3">${subject_element}</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Gender:</th><td colspan="3">${grade_element}</th>
+                                    </tr>                                   
+                                </tbody>
+                            </table>`
 
         } else {
             alert("Please fill out subjects and greads")
         }
+
+        clear_data();
     })
 
     function clear_data() {
@@ -539,6 +571,12 @@
         student_city_element.value = "";
         province_element.value = "";
         country_element.value = "";
+
+
+        //clear A / L Result Sheet
+        subject_element.value = "";
+        grade_element.value = 'Select Grade';
+
 
     }
 </script>
