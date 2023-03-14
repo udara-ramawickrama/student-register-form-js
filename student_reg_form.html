@@ -359,6 +359,17 @@
     let reg_button = document.getElementById('btnRegFormSubmit');
     //get student basic element
     let student_basic_element = document.getElementById('studentBasics');
+    //get student address element
+    let student_address_element = document.getElementById('address');
+    //get student postalCode element
+    let student_postalCode_element = document.getElementById('postalCode');
+    //get student city element
+    let student_city_element = document.getElementById('city');
+    //get hobbies element
+    let hobbies_element = document.querySelectorAll('.hobbies');
+    //get province element
+    let province_element = document.getElementById('province');
+
 
     //Student A/ L Results box
     //get grade element
@@ -367,6 +378,8 @@
     let add_btn_element = document.getElementById('btnQualificationAdd');
     //get subject element
     let subject_element = document.getElementById('subject');
+    //get table element
+    let table_element = document.getElementById('tblResultBody');
 
     //create eventlistner for the date of birth
     //this page is loaded when at the first time of page load
@@ -433,6 +446,18 @@
         return gender;
     }
 
+    //hobbies check
+    const hobbies_checked = (obj) => {
+        //console.log(obj);
+        let checked_hobbies = [];
+        obj.forEach(item => {
+            if (item.checked) {
+                checked_hobbies.push(item.value);
+            }
+        })
+        return checked_hobbies;
+    }
+
     //fill counries
     const fill_countries = () => {
         fetch('https://countriesnow.space/api/v0.1/countries')
@@ -474,13 +499,13 @@
                                         <th scope="col">Gender:</th><td colspan="3">${gender_checked(gender_element)}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">Address:</th><td scope="col">First</th><th scope="col">Postal Code:</th><td scope="col">First</th>
+                                        <th scope="col">Address:</th><td scope="col">${student_address_element.value}</th><th scope="col">Postal Code:</th><td scope="col">${student_postalCode_element.value}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">City:</th><td scope="col">First</th><th scope="col">Country:</th><td scope="col">${country_element.value}</th>
+                                        <th scope="col">City:</th><td scope="col">${student_city_element.value}</th><th scope="col">Country:</th><td scope="col">${country_element.value}</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col">Hobbies:</th><td colspan="3">First</th>
+                                        <th scope="col">Hobbies:</th><td colspan="3">${hobbies_checked(hobbies_element)}</th>
                                     </tr>
                                 </tbody>
                             </table>`
@@ -493,6 +518,8 @@
     add_btn_element.addEventListener('click', () => {
         //console.log(subject_element.value === "");
         if (subject_element.value !== "" && grade_element.value !== 'Select Grade') {
+            //add row
+            let row
 
         } else {
             alert("Please fill out subjects and greads")
@@ -502,6 +529,17 @@
     function clear_data() {
         //clear input data
         first_name_element.value = "";
+        last_name_element.value = "";
+        email_element.value = "";
+        mobile_element.value = "";
+        dob.value = "";
+        age_element.value = 0;
+        student_address_element.value = "";
+        student_postalCode_element.value = "";
+        student_city_element.value = "";
+        province_element.value = "";
+        country_element.value = "";
+
     }
 </script>
 
