@@ -239,7 +239,7 @@
                         </button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-dark text-warning btn-block" style="width: 100%;" type="button" id="btnRegFormClear">
+                            <button class="btn btn-dark text-warning btn-block" onclick="clear_data()" style="width: 100%;" type="button" id="btnRegFormClear">
                             <i class="fa fa-undo"></i>&nbsp; Clear
                         </button>
                         </div>
@@ -380,8 +380,17 @@
     let subject_element = document.getElementById('subject');
     //get table element
     let table_element = document.getElementById('tblResultBody');
+    //get subject element
+    let result_element = document.getElementById('alResultTable');
     //global variable empty arr
     let results_arr = [];
+
+    //Course Applied For
+    //get courses element
+    let courses_elements = document.querySelectorAll('.courses');
+    //get courses_table element
+    let courses_table_element = document.getElementById('courses');
+
 
     //create eventlistner for the date of birth
     //this page is loaded when at the first time of page load
@@ -460,6 +469,24 @@
         return checked_hobbies;
     }
 
+    //corses checked
+    const courses_checked = (obj) => {
+        let selected_course = "";
+        obj.forEach(course => {
+            if (course.checked) {
+                selected_course = course.value;
+            }
+        })
+
+        return `<table class="table table-bordered bg-light">
+                    <tbody>
+                        <tr>
+                           <th>Course:</th><td>${selected_course}</td>
+                        </tr>
+                    </tbody>
+                </table>`
+    }
+
     //fill counries
     const fill_countries = () => {
         fetch('https://countriesnow.space/api/v0.1/countries')
@@ -495,7 +522,7 @@
                                         <th scope="col">Email:</th><td scope="col">${email_element.value}</th><th scope="col">Mobile:</th><td scope="col">${mobile_element.value}</th>
                                     </tr> 
                                     <tr>
-                                        <th scope="col">Date Of Birth:</th><td scope="col">${dob}</th><th scope="col">Age:</th><td scope="col">${age_element.value}</th>
+                                        <th scope="col">Date Of Birth:</th><td scope="col">${dob}</td><th scope="col">Age:</th><td scope="col">${age_element.value}</th>
                                     </tr>                                
                                     <tr>
                                         <th scope="col">Gender:</th><td colspan="3">${gender_checked(gender_element)}</th>
@@ -512,7 +539,27 @@
                                 </tbody>
                             </table>`
         student_basic_element.innerHTML = basic_table;
-        clear_data();
+
+        //create Student A/ L Results table
+        let table_rows = "";
+        results_arr.forEach(obj => {
+            table_rows += `<tr>
+                                <td>${obj.subject}<span style="float:right">${obj.grade}</span></td>		                                
+                            </tr>`
+        })
+        result_element.innerHTML = `<table class="table table-bordered">
+                                        <tbody class="bg-light">                                                                
+                                            ${table_rows}                                                                 
+                                        </tbody>
+                                    </table>`;
+
+        //courses_table_element.innerText = courses_element.value;
+
+        courses_table_element.innerHTML = courses_checked(courses_elements);
+
+
+        //clear_data();
+
 
     })
 
@@ -522,6 +569,7 @@
         if (subject_element.value !== "" && grade_element.value !== 'Select Grade') {
             //add row
             let row = table_element.insertRow();
+            console.log(row);
             //add cells
             let taskCell_1 = row.insertCell();
             let taskCell_2 = row.insertCell();
@@ -534,29 +582,20 @@
             }
             results_arr.push(result);
             //console.log(results_arr);
-            results_arr.forEach(obj => {
-                subject_option = new Option(obj.subject, obj.subject); //display_name, value
-                subject_element.add(subject_option);
-                grade_option = new Option(obj.grade, obj.grade); //display_name, value
-                grade_element.add(grade_option);
-            })
-            let basic_table = `<table class="table table-bordered">
-                                <tbody class="bg-light">                                                                
-                                    <tr>
-                                        <th scope="col">Gender:</th><td colspan="3">${subject_element}</th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="col">Gender:</th><td colspan="3">${grade_element}</th>
-                                    </tr>                                   
-                                </tbody>
-                            </table>`
 
         } else {
             alert("Please fill out subjects and greads")
         }
+        clear_results();
 
-        clear_data();
     })
+
+    //clear A / L Result Sheet
+    function clear_results() {
+        subject_element.value = "";
+        grade_element.value = 'Select Grade';
+    }
+
 
     function clear_data() {
         //clear input data
@@ -564,7 +603,28 @@
         last_name_element.value = "";
         email_element.value = "";
         mobile_element.value = "";
-        dob.value = "";
+        date_element.value = 0;
+        month_element.value = 0;
+        year_element.value = 0;
+
+        //clear checked gender
+        gender_element.forEach(gender => {
+            gender.checked = false;
+        });
+
+        //clear checked hobbies
+        hobbies_element.forEach(hobby => {
+            hobby.checked = false;
+        });
+
+        //remove A / L Result Sheet
+        table_element.remove();
+
+        //clear checked courses
+        courses_elements.forEach(course => {
+            course.checked = false;
+        });
+
         age_element.value = "";
         student_address_element.value = "";
         student_postalCode_element.value = "";
@@ -573,9 +633,7 @@
         country_element.value = "";
 
 
-        //clear A / L Result Sheet
-        subject_element.value = "";
-        grade_element.value = 'Select Grade';
+
 
 
     }
